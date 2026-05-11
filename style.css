@@ -1,0 +1,1165 @@
+/* =========================
+RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #08131f;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 22px 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(6, 18, 30, 0.95),
+        rgba(6, 18, 30, 0.55),
+        transparent
+    );
+
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
+}
+
+/* LOGO */
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo-area img {
+    width: 90px;
+}
+
+.logo-text h1 {
+    font-size: 30px;
+    color: white;
+    font-family: 'Times New Roman', serif;
+    font-weight: 400;
+}
+
+.logo-text span {
+    color: #c89a5b;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+/* MENU */
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 45px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.navbar a:hover {
+    color: #c89a5b;
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #c89a5b;
+
+    transition: 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* BOTÃO HAMBÚRGUER */
+
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url('img/praia.png');
+
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+}
+
+.overlay {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+.overlay h1 {
+    font-size: 92px;
+    font-family: 'Times New Roman', serif;
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    max-width: 1100px;
+
+    margin-bottom: 30px;
+
+    letter-spacing: 2px;
+}
+
+.top-text {
+    color: #c89a5b;
+
+    letter-spacing: 6px;
+
+    text-transform: uppercase;
+
+    font-size: 22px;
+
+    margin-bottom: 55px;
+}
+
+.botoes {
+    display: flex;
+    gap: 25px;
+}
+
+.btn {
+    padding: 18px 42px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.btn.primary {
+    border: 2px solid #c89a5b;
+    color: white;
+}
+
+.btn.secondary {
+    border: 2px solid #c89a5b;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================
+SEÇÕES
+========================= */
+
+section {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 54px;
+    font-family: 'Times New Roman', serif;
+    font-weight: 400;
+
+    text-align: center;
+
+    margin-bottom: 70px;
+}
+/* =========================
+   SOBRE
+========================= */
+
+#sobre {
+    padding: 80px 20px;
+}
+
+.sobre-container {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sobre-texto {
+    flex: 1;
+    min-width: 300px;
+
+    background: rgba(255,255,255,0.05);
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    color: white;
+
+    line-height: 1.8;
+}
+
+.sobre-texto b {
+    display: block;
+    margin-top: 15px;
+    color: #d6a24c;
+}
+
+.sobre-mapa {
+    flex: 1;
+    min-width: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sobre-mapa iframe {
+    width: 100%;
+    height: 350px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    display: block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .sobre-container {
+        flex-direction: column;
+    }
+
+    .sobre-texto {
+        padding: 25px;
+    }
+
+    .sobre-mapa iframe {
+        height: 250px;
+    }
+
+}
+
+/* =========================
+GALERIA
+========================= */
+
+.carousel {
+    position: relative;
+
+    width: 100%;
+    max-width: 1000px;
+
+    height: 550px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+}
+
+.slide {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.5s;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.nav {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    font-size: 28px;
+
+    z-index: 10;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+.dots {
+    position: absolute;
+    bottom: 20px;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    display: inline-block;
+
+    margin: 5px;
+}
+
+.dot.active {
+    background: #c89a5b;
+}
+
+/* =========================
+COMODIDADES
+========================= */
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 280px;
+
+    padding: 55px 30px;
+
+    border-radius: 26px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card i {
+    font-size: 42px;
+    color: #c89a5b;
+
+    margin-bottom: 22px;
+}
+
+.card p {
+    font-size: 20px;
+}
+
+/* RESERVA */
+
+.reserva {
+    padding: 120px 20px;
+
+    background:
+        linear-gradient(rgba(4, 12, 22, 0.92),
+            rgba(4, 12, 22, 0.92)),
+        url('img/praia.png');
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 40px;
+}
+
+.reserva-container {
+    max-width: 620px;
+
+    margin: auto;
+
+    padding: 55px;
+
+    border-radius: 28px;
+
+    background: rgba(12, 24, 38, 0.75);
+
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+
+    color: white;
+}
+
+.reserva-container h2 {
+    font-size: 42px;
+
+    color: white;
+
+    margin-bottom: 35px;
+
+    font-family: 'Times New Roman', serif;
+
+    font-weight: 400;
+
+    text-align: center;
+}
+
+.input-calendario {
+    position: relative;
+}
+
+.input-calendario i {
+    position: absolute;
+
+    right: 22px;
+
+    top: 60%;
+
+    transform: translateY(20%);
+
+    color: #c89a5b;
+
+    font-size: 18px;
+
+    pointer-events: none;
+}
+
+#calendario {
+    width: 100%;
+
+    padding: 20px 24px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 16px;
+
+    color: white;
+
+    font-size: 17px;
+
+    margin-top: 40px;
+
+    transition: 0.3s;
+
+    outline: none;
+}
+
+#calendario::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+#calendario:focus {
+    border-color: #c89a5b;
+
+    box-shadow:
+        0 0 0 4px rgba(200, 154, 91, 0.15);
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.resultado {
+    margin-top: 25px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 18px;
+}
+
+.resultado p {
+    margin-top: 10px;
+}
+
+.reserva-container button {
+    width: 100%;
+
+    padding: 18px;
+
+    margin-top: 28px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #c89a5b;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.reserva-container button:hover {
+    transform: translateY(-4px);
+
+    background: #d9aa68;
+
+    box-shadow:
+        0 12px 30px rgba(200, 154, 91, 0.35);
+}
+
+/* CALENDÁRIO PREMIUM ESCURO */
+
+.flatpickr-calendar {
+    background: #0f1d2c !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.45);
+
+    overflow: hidden;
+}
+
+.flatpickr-months {
+    background: #132436 !important;
+
+    padding: 12px 0;
+}
+
+.flatpickr-current-month {
+    color: #c89a5b !important;
+
+    font-weight: 600;
+
+    font-size: 18px;
+}
+
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: #c89a5b !important;
+}
+
+.flatpickr-weekday {
+    color: rgba(255, 255, 255, 0.7) !important;
+
+    font-weight: 600;
+}
+
+.flatpickr-day {
+    color: white !important;
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+.flatpickr-day:hover {
+    background: rgba(200, 154, 91, 0.18) !important;
+
+    color: #c89a5b !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #c89a5b !important;
+
+    border-color: #c89a5b !important;
+
+    color: white !important;
+}
+
+.flatpickr-day.inRange {
+    background: rgba(200, 154, 91, 0.15) !important;
+
+    border-color: transparent !important;
+
+    color: white !important;
+}
+
+.flatpickr-day.today {
+    border: 1px solid #c89a5b !important;
+}
+
+.numInputWrapper input {
+    color: white !important;
+}
+
+.flatpickr-innerContainer {
+    background: #0f1d2c !important;
+}
+
+.flatpickr-rContainer {
+    background: #0f1d2c !important;
+}
+
+.dayContainer {
+    background: #0f1d2c !important;
+}
+
+/* =========================
+AVALIAÇÕES
+========================= */
+
+.reviews-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+.review-card {
+    width: 320px;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 24, 38, 0.92),
+            rgba(18, 34, 52, 0.88)
+        );
+
+    transition: 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+}
+
+.review-card p {
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.review-card span {
+    color: #c89a5b;
+}
+
+/* =========================
+CTA FINAL
+========================= */
+
+.cta-final {
+    text-align: center;
+}
+
+.cta-final p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+}
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+
+    background:
+        linear-gradient(
+            to bottom,
+            #071421,
+            #0b1b2b
+        );
+
+    padding: 90px 30px 30px;
+}
+
+/* CONTAINER */
+
+.footer-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 60px;
+
+    flex-wrap: nowrap;
+}
+
+/* COLUNAS */
+
+.footer-col {
+
+    flex: 1;
+}
+
+/* ALINHAMENTO */
+
+.footer-col:first-child {
+
+    text-align: left;
+}
+
+.footer-col:last-child {
+
+    text-align: right;
+}
+
+.footer-col h3 {
+
+    font-size: 28px;
+
+    margin-bottom: 22px;
+}
+
+.footer-col p {
+
+    color: rgba(255,255,255,0.7);
+
+    line-height: 1.8;
+
+    margin-bottom: 10px;
+}
+
+.footer-col i {
+
+    color: #c89a5b;
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+
+    margin-top: 60px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    text-align: center;
+}
+
+.btn-footer {
+
+    display: inline-block;
+
+    padding: 16px 34px;
+
+    border-radius: 14px;
+
+    background: #c89a5b;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+
+    transition: 0.3s;
+}
+
+.btn-footer:hover {
+
+    transform: translateY(-3px);
+
+    background: #d6a24c;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .footer {
+
+        padding: 70px 20px 30px;
+    }
+
+    .footer-container {
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-wrap: nowrap;
+    }
+
+    .footer-col:first-child {
+
+        text-align: left;
+    }
+
+    .footer-col:last-child {
+
+        text-align: right;
+    }
+
+    .footer-col h3 {
+
+        font-size: 20px;
+    }
+
+    .footer-col p {
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+    .btn-footer {
+
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+}
+/* =========================
+LIGHTBOX
+========================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.95);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+
+    border-radius: 20px;
+}
+
+.lightbox .close {
+    position: absolute;
+
+    top: 30px;
+    right: 40px;
+
+    font-size: 45px;
+
+    cursor: pointer;
+}
+
+/* =========================
+ANIMAÇÃO
+========================= */
+
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+RESPONSIVO TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .overlay h1 {
+        font-size: 65px;
+    }
+
+    .sobre-container {
+        flex-direction: column;
+    }
+
+    .carousel {
+        height: 420px;
+    }
+
+}
+
+/* =========================
+RESPONSIVO MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 18px 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar ul {
+
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        background: rgba(8, 19, 31, 0.98);
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 30px;
+
+        padding: 30px 0;
+
+        display: none;
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .logo-area img {
+        width: 65px;
+    }
+
+    .logo-text h1 {
+        font-size: 24px;
+    }
+
+    .overlay h1 {
+        font-size: 42px;
+    }
+
+    .top-text {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .botoes {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 38px;
+    }
+
+    .carousel {
+        height: 300px;
+    }
+
+    .card,
+    .review-card {
+        width: 100%;
+    }
+
+    .reserva-container {
+        padding: 35px 20px;
+    }
+
+}
+
+/* =========================
+CELULAR PEQUENO
+========================= */
+
+@media (max-width: 480px) {
+
+    .overlay h1 {
+        font-size: 32px;
+    }
+
+    .carousel {
+        height: 230px;
+    }
+
+    .nav {
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+}
+/* =========================
+MENU MOBILE
+========================= */
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+
+    position: relative;
+    z-index: 1001;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 18px 20px;
+
+        position: fixed;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* MENU ABAIXO DAS BARRAS */
+
+    .navbar ul {
+
+        position: absolute;
+
+        top: 75px;
+        right: 20px;
+
+        width: 190px;
+
+        background: rgba(8, 19, 31, 0.98);
+
+        backdrop-filter: blur(10px);
+
+        border-radius: 18px;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+
+        display: none;
+
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .navbar ul.active {
+        display: flex;
+    }
+
+    .navbar a {
+        font-size: 16px;
+    }
+
+}

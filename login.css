@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Fundo igual ao padrão do site */
+    background:
+        linear-gradient(rgba(1, 12, 25, 0.88),
+            rgba(1, 12, 25, 0.92)),
+        url('img/praia.png');
+
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* brilho azul do fundo */
+body::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle,
+            rgba(0, 140, 255, 0.18),
+            transparent 70%);
+    top: -200px;
+    left: -200px;
+    filter: blur(40px);
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle,
+            rgba(255, 170, 60, 0.10),
+            transparent 70%);
+    bottom: -200px;
+    right: -200px;
+    filter: blur(40px);
+}
+
+.login-box {
+    position: relative;
+    width: 420px;
+
+    background: rgba(10, 20, 35, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 22px;
+
+    padding: 45px;
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(0, 140, 255, 0.08);
+
+    color: white;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.logo p {
+    color: #c8d2e1;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', serif;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.input-box input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.45);
+
+    padding: 15px 40px 15px 5px;
+
+    color: white;
+    font-size: 16px;
+    outline: none;
+
+    transition: 0.3s;
+
+}
+
+.input-box input:focus {
+    border-bottom: 2px solid #d8a45b;
+    box-shadow: 0 10px 20px rgba(216, 164, 91, 0.12);
+}
+
+.input-box label {
+    position: absolute;
+    left: 5px;
+    top: 14px;
+
+    color: #d7dde8;
+    pointer-events: none;
+
+    transition: 0.3s;
+    font-family: 'Times New Roman', serif;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -10px;
+    font-size: 12px;
+    color: #d8a45b;
+}
+
+.input-box i {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    color: #d8a45b;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #d7dde8;
+}
+
+.options a {
+    text-decoration: none;
+    color: #d8a45b;
+    transition: 0.3s;
+}
+
+.options a:hover {
+    color: #f6c37c;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg,
+            #d8a45b,
+            #f0be76);
+
+    color: #08121f;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(216, 164, 91, 0.35),
+        0 0 40px rgba(216, 164, 91, 0.15);
+}
+
+.register {
+    text-align: center;
+    margin-top: 28px;
+    color: #d7dde8;
+    font-size: 15px;
+}
+
+.register a {
+    color: #d8a45b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register a:hover {
+    color: #f0be76;
+}
+
+/* LOGO */
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo img {
+    width: 95px;
+    height: 95px;
+
+    object-fit: cover;
+
+    margin-bottom: 18px;
+
+    border-radius: 50%;
+
+    padding: 8px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 0 25px rgba(0, 140, 255, 0.15),
+        0 0 45px rgba(0, 140, 255, 0.08);
+
+    transition: 0.4s;
+}
+
+.logo img:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 35px rgba(0, 140, 255, 0.30),
+        0 0 60px rgba(0, 140, 255, 0.15);
+}
+
+.logo h1 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.logo p {
+    color: #d8a45b;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+
+/* RESPONSIVO */
+@media screen and (max-width: 768px) {
+    .colaborador img {
+        width: 30%;
+    }
+
+}
