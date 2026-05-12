@@ -2,77 +2,86 @@
 // CONFIGURAÇÃO DO SITE
 // =========================
 
+// valor da diária
 const precoNoite = 700;
 
 
 // =========================
-// ANIMAÇÃO AO ROLAR
+// ANIMAÇÃO AO ROLAR A TELA
 // =========================
 
-const fadeElements = document.querySelectorAll('.fade');
+// pega todos elementos com classe "fade"
+const elements = document.querySelectorAll('.fade');
 
-function ativarFade() {
+// detecta rolagem da página
+window.addEventListener('scroll', () => {
 
-    fadeElements.forEach((element) => {
+    // percorre cada elemento
+    elements.forEach(el => {
 
-        const top = element.getBoundingClientRect().top;
+        // quando elemento entrar na tela
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
 
-        if (top < window.innerHeight - 100) {
-
-            element.classList.add('show');
+            // adiciona classe show
+            el.classList.add('show');
 
         }
 
     });
 
-}
-
-window.addEventListener('scroll', ativarFade);
-
-window.addEventListener('load', ativarFade);
+});
 
 
 // =========================
 // CALENDÁRIO
 // =========================
 
+// inicia o flatpickr
 flatpickr("#calendario", {
 
+    // seleciona intervalo de datas
     mode: "range",
 
+    // formato da data
     dateFormat: "d/m/Y",
 
+    // impede datas passadas
     minDate: "today",
 
+    // idioma português
     locale: "pt",
 
+    // executa função ao mudar data
     onChange: calcularTotal
 
 });
 
 
 // =========================
-// CALCULAR TOTAL
+// CALCULAR TOTAL DA RESERVA
 // =========================
-
 function calcularTotal(selectedDates) {
 
+    // verifica se duas datas foram selecionadas
     if (selectedDates.length === 2) {
 
+        // data inicial
         const inicio = selectedDates[0];
 
+        // data final
         const fim = selectedDates[1];
 
-        const noites =
-            (fim - inicio) / (1000 * 60 * 60 * 24);
+        // calcula quantidade de noites
+        const diff = (fim - inicio) / (1000 * 60 * 60 * 24);
 
-        const total = noites * precoNoite;
+        // calcula valor total
+        const total = diff * precoNoite;
 
-        document.getElementById("noites").innerText =
-            noites;
+        // mostra quantidade de noites
+        document.getElementById("noites").innerText = diff;
 
-        document.getElementById("total").innerText =
-            `R$ ${total.toLocaleString('pt-BR')}`;
+        // mostra preço total
+        document.getElementById("total").innerText = `R$ ${total}`;
 
     }
 
@@ -82,105 +91,122 @@ function calcularTotal(selectedDates) {
 // =========================
 // BOTÃO RESERVAR
 // =========================
-
 function reservar() {
 
-    const datas =
-        document.getElementById("calendario").value;
+    // pega datas escolhidas
+    const datas = document.getElementById("calendario").value;
 
-    const total =
-        document.getElementById("total").innerText;
+    // pega valor total
+    const total = document.getElementById("total").innerText;
 
+    // verifica se escolheu data
     if (!datas) {
 
         alert("Selecione as datas!");
 
         return;
-
     }
 
+    // mensagem do whatsapp
+    const mensagem =
+        `Olá! Quero reservar:\nDatas: ${datas}\nTotal: ${total}`;
+
+    // número do whatsapp
     const telefone = "5522997099571";
 
-    const mensagem =
-        `Olá! Quero reservar:%0A%0A` +
-        `Datas: ${datas}%0A` +
-        `Total: ${total}`;
-
+    // abre whatsapp
     window.open(
-        `https://wa.me/${telefone}?text=${mensagem}`,
-        "_blank"
+        `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`
     );
 
 }
 
 
 // =========================
-// CARROSSEL
+// CARROSSEL E LIGHTBOX
 // =========================
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    const slides =
-        document.querySelectorAll(".slide");
+    // pega todos slides
+    const slides = document.querySelectorAll(".slide");
 
-    const dots =
-        document.querySelectorAll(".dot");
+    // pega dots
+    const dots = document.querySelectorAll(".dot");
 
-    const next =
-        document.querySelector(".next");
+    // botão próximo
+    const next = document.querySelector(".next");
 
-    const prev =
-        document.querySelector(".prev");
+    // botão anterior
+    const prev = document.querySelector(".prev");
 
+    // lightbox
+    const lightbox = document.getElementById("lightbox");
+
+    // imagem do lightbox
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    // botão fechar
+    const closeBtn = document.querySelector(".close");
+
+    // slide atual
     let current = 0;
 
 
     // =========================
     // MOSTRAR SLIDE
     // =========================
-
     function showSlide(index) {
 
+        // percorre slides
         slides.forEach((slide, i) => {
 
+            // remove slide ativo
             slide.classList.remove("active");
 
-            dots[i].classList.remove("active");
+            // remove dot ativo
+            if (dots[i]) {
+                dots[i].classList.remove("active");
+            }
 
         });
 
+        // ativa slide atual
         slides[index].classList.add("active");
 
-        dots[index].classList.add("active");
+        // ativa dot atual
+        if (dots[index]) {
+            dots[index].classList.add("active");
+        }
 
+        // atualiza slide atual
         current = index;
 
     }
 
 
     // =========================
-    // PRÓXIMO
+    // BOTÃO PRÓXIMO
     // =========================
-
     next.addEventListener("click", () => {
 
-        current =
-            (current + 1) % slides.length;
+        // avança slide
+        current = (current + 1) % slides.length;
 
+        // mostra slide
         showSlide(current);
 
     });
 
 
     // =========================
-    // ANTERIOR
+    // BOTÃO ANTERIOR
     // =========================
-
     prev.addEventListener("click", () => {
 
-        current =
-            (current - 1 + slides.length) % slides.length;
+        // volta slide
+        current = (current - 1 + slides.length) % slides.length;
 
+        // mostra slide
         showSlide(current);
 
     });
@@ -189,12 +215,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     // DOTS
     // =========================
+    dots.forEach((dot, i) => {
 
-    dots.forEach((dot, index) => {
-
+        // clique no dot
         dot.addEventListener("click", () => {
 
-            showSlide(index);
+            // mostra slide clicado
+            showSlide(i);
 
         });
 
@@ -204,12 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     // AUTO PLAY
     // =========================
-
     setInterval(() => {
 
-        current =
-            (current + 1) % slides.length;
+        // avança slide automaticamente
+        current = (current + 1) % slides.length;
 
+        // mostra slide
         showSlide(current);
 
     }, 5000);
@@ -219,125 +246,61 @@ document.addEventListener("DOMContentLoaded", () => {
     // LIGHTBOX
     // =========================
 
-    const lightbox =
-        document.getElementById("lightbox");
+    // percorre imagens
+    document.querySelectorAll(".slide img").forEach(img => {
 
-    const lightboxImg =
-        document.getElementById("lightbox-img");
+        // clique na imagem
+        img.addEventListener("click", () => {
 
-    const closeBtn =
-        document.querySelector(".close");
+            // abre lightbox
+            lightbox.style.display = "flex";
 
-
-    document.querySelectorAll(".slide img")
-        .forEach((img) => {
-
-            img.addEventListener("click", () => {
-
-                lightbox.style.display = "flex";
-
-                lightboxImg.src = img.src;
-
-            });
+            // coloca imagem clicada
+            lightboxImg.src = img.src;
 
         });
 
-
-    // =========================
-    // FECHAR LIGHTBOX
-    // =========================
-
-    closeBtn.addEventListener("click", fecharLightbox);
-
-    lightbox.addEventListener("click", (e) => {
-
-        if (e.target === lightbox) {
-
-            fecharLightbox();
-
-        }
-
     });
 
-    function fecharLightbox() {
 
+    // =========================
+    // FECHAR NO X
+    // =========================
+    closeBtn.addEventListener("click", () => {
+
+        // fecha lightbox
         lightbox.style.display = "none";
 
-    }
-
-
-    // =========================
-    // SWIPE MOBILE
-    // =========================
-
-    let startX = 0;
-
-    let endX = 0;
-
-    const carousel =
-        document.querySelector(".carousel");
-
-
-    carousel.addEventListener("touchstart", (e) => {
-
-        startX = e.touches[0].clientX;
-
     });
 
 
-    carousel.addEventListener("touchend", (e) => {
+    // =========================
+    // FECHAR CLICANDO FORA
+    // =========================
+    lightbox.addEventListener("click", (e) => {
 
-        endX = e.changedTouches[0].clientX;
+        // verifica clique fora da imagem
+        if (e.target === lightbox) {
 
-        handleSwipe();
+            // fecha lightbox
+            lightbox.style.display = "none";
+
+        }
 
     });
-
-
-    function handleSwipe() {
-
-        const diff = startX - endX;
-
-        // esquerda
-
-        if (diff > 50) {
-
-            current =
-                (current + 1) % slides.length;
-
-            showSlide(current);
-
-        }
-
-        // direita
-
-        if (diff < -50) {
-
-            current =
-                (current - 1 + slides.length) % slides.length;
-
-            showSlide(current);
-
-        }
-
-    }
 
 });
 
-
 // =========================
-// LOGIN
+// FORMULÁRIO DE LOGIN
 // =========================
 
 function login(event) {
 
     event.preventDefault();
 
-    const email =
-        document.getElementById("email").value;
-
-    const senha =
-        document.getElementById("senha").value;
+    let email = document.getElementById("email").value;
+    let senha = document.getElementById("senha").value;
 
     if (email !== "" && senha !== "") {
 
@@ -350,19 +313,3 @@ function login(event) {
     }
 
 }
-
-// =========================
-// MENU MOBILE
-// =========================
-
-const menuToggle =
-    document.getElementById("menu-toggle");
-
-const menuMobile =
-    document.getElementById("menu-mobile");
-
-menuToggle.addEventListener("click", () => {
-
-    menuMobile.classList.toggle("active");
-
-});
